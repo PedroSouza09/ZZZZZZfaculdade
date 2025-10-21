@@ -11,6 +11,10 @@
         background: linear-gradient(135deg, #00c6ff, #007bff);
         color: #fff;
         overflow-x: hidden;
+        /* Define a altura mínima do corpo para que o footer fique mais para baixo */
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
     }
 
     .banner {
@@ -34,7 +38,11 @@
         flex-wrap: wrap;
         justify-content: center;
         gap: 30px;
-        padding: 20px; /* Adicionado padding para evitar que o conteúdo toque nas bordas */
+        padding: 20px;
+        /* Permite que o container empurre o footer para baixo */
+        flex-grow: 1; 
+        align-items: center; /* Centraliza verticalmente o grupo de cartões */
+        margin: 30px 0; /* Adiciona margem acima/abaixo para centralizar melhor */
     }
 
     .section {
@@ -45,7 +53,7 @@
         box-shadow: 0 0 15px rgba(255,255,255,0.2);
         transition: transform 0.3s;
         text-align: center;
-        box-sizing: border-box; /* Garante que padding e border não aumentem o width total */
+        box-sizing: border-box;
     }
 
     .section:hover {
@@ -101,7 +109,7 @@
 
     footer {
         text-align: center;
-        margin-top: 40px;
+        margin-top: 80px; /* AUMENTADO O ESPAÇAMENTO SUPERIOR */
         padding-bottom: 20px;
         font-size: 1em;
     }
@@ -136,11 +144,12 @@
         .container {
             padding: 10px;
             gap: 20px;
+            margin: 20px 0;
         }
 
         .section {
-            width: 90%; /* Ocupa quase toda a largura da tela */
-            max-width: 400px; /* Limite máximo para telas maiores */
+            width: 90%;
+            max-width: 400px;
             padding: 15px;
         }
 
@@ -149,7 +158,7 @@
         }
 
         .led {
-            width: 40px; /* LEDs menores no mobile */
+            width: 40px;
             height: 40px;
             margin: 0 10px;
         }
@@ -161,6 +170,10 @@
         
         .result {
             font-size: 1.1em;
+        }
+        
+        footer {
+            margin-top: 40px; /* Espaçamento menor no mobile */
         }
     }
 </style>
@@ -192,7 +205,7 @@
         <div style="display:flex; justify-content:center; align-items:center;">
             <button onclick="girarLeds()">🎡 Tentar a Sorte</button>
         </div>
-        <div class="result" id="resultado">Clique no botão acima!</div> 
+        <div class="result" id="resultado">&nbsp;</div> 
     </div>
 
     <div class="section">
@@ -219,6 +232,13 @@ const ledsElementos = document.querySelectorAll(".led"); // Seleciona todos os L
 const resultadoElemento = document.getElementById("resultado"); // Elemento de resultado
 const winSound = new Audio('https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg');
 const loseSound = new Audio('https://actions.google.com/sounds/v1/cartoon/slide_whistle.ogg');
+
+// Oculta a mensagem inicial no desktop, ela será preenchida ao clicar
+if (window.innerWidth > 768) {
+    resultadoElemento.innerHTML = '&nbsp;'; 
+} else {
+    resultadoElemento.textContent = 'Clique no botão acima!';
+}
 
 // Função de Confete (para vitória)
 function confete() {
