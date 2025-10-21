@@ -35,10 +35,10 @@
 
     .container {
         display: flex;
-        /* ALTERADO: Empilha os itens verticalmente */
+        /* Empilha os itens verticalmente */
         flex-direction: column; 
         align-items: center; /* Centraliza horizontalmente as caixas */
-        justify-content: flex-start; /* Alinha ao topo (ou centro se necessário, mas 'flex-start' funciona bem com 'flex-direction: column') */
+        justify-content: flex-start;
         gap: 30px;
         padding: 20px;
         flex-grow: 1;
@@ -49,17 +49,21 @@
         background: rgba(255,255,255,0.15);
         padding: 20px;
         border-radius: 15px;
-        /* ALTERADO: Ocupa a maior parte da largura */
         width: 90%; 
-        max-width: 500px; /* Limite o tamanho máximo para não ficar muito largo em monitores */
+        max-width: 500px; /* Tamanho padrão */
         box-shadow: 0 0 15px rgba(255,255,255,0.2);
         transition: transform 0.3s;
         text-align: center;
         box-sizing: border-box;
     }
 
+    /* Estilo específico para a caixa de Resumo - Mantendo a largura maior */
+    #resumo-section {
+        max-width: 700px; 
+    }
+
     .section:hover {
-        transform: scale(1.03); /* Ajustado para um scale menor, já que estão empilhados */
+        transform: scale(1.03); 
     }
 
     .section h2 {
@@ -111,7 +115,7 @@
 
     footer {
         text-align: center;
-        margin-top: 50px; /* Espaçamento reduzido, pois os cartões já ocupam mais espaço */
+        margin-top: 50px; 
         padding-bottom: 20px;
         font-size: 1em;
     }
@@ -132,7 +136,7 @@
     }
 
     /* =========================================== */
-    /* RESPONSIVIDADE (MOBILE) - Ajustes mínimos, pois o layout já está em coluna */
+    /* RESPONSIVIDADE (MOBILE) */
     /* =========================================== */
     @media (max-width: 600px) {
         .banner {
@@ -150,8 +154,12 @@
         }
 
         .section {
-            width: 95%; /* Ocupa ainda mais a largura no mobile */
+            width: 95%; 
             padding: 15px;
+        }
+        
+        #resumo-section {
+            max-width: 95%; 
         }
 
         .led {
@@ -188,6 +196,19 @@
         </ul>
     </div>
 
+    <div class="section" id="resumo-section" style="text-align:justify;">
+        <h2>Resumo do Projeto</h2>
+        <p>
+            Este projeto é uma simulação lúdica de um jogo de sorte usando LEDs controlados por Arduino, inspirado em cassinos. O usuário pressiona um botão para “girar” os LEDs, que piscam rapidamente simulando uma roleta ou slot machine, e ao final param de forma aleatória para indicar o resultado.
+        </p>
+        <p>
+            A mecânica do jogo é simples e interativa: se o LED premiado acender, o jogador ganha; caso contrário, ele perde e a chance de vitória aumenta a cada tentativa perdida, incentivando o jogador a continuar tentando. Esse aumento progressivo da chance cria uma experiência envolvente e divertida, semelhante ao que acontece em jogos de azar, mas de forma educativa e segura.
+        </p>
+        <p>
+            O projeto também explora conceitos básicos de eletrônica e programação, como controle de LEDs, leitura de botão e geração de números aleatórios. Além disso, efeitos visuais e sonoros tornam a simulação mais atrativa, permitindo ao usuário aprender brincando enquanto interage com o sistema.
+        </p>
+    </div>
+
     <div class="section">
         <h2>Simulação de LEDs</h2>
         <div class="led-simulation">
@@ -199,14 +220,6 @@
             <button onclick="girarLeds()">🎡 Tentar a Sorte</button>
         </div>
         <div class="result" id="resultado">&nbsp;</div> 
-    </div>
-
-    <div class="section">
-        <h2>Resumo do Projeto</h2>
-        <p>
-            Este projeto foi desenvolvido como uma simulação lúdica de um jogo de sorte usando LEDs controlados por Arduino. 
-            A ideia é representar de forma interativa o funcionamento de sistemas eletrônicos simples, com elementos de entretenimento inspirados em cassinos. A chance de ganhar aumenta a cada tentativa perdida.
-        </p>
     </div>
 </div>
 
@@ -265,7 +278,7 @@ function girarLeds() {
         const ganhou = Math.random() < chanceDeGanho;
         
         if (ganhou) {
-            resultadoElemento.textContent = `🎉 Você Ganhou! 🎉`; 
+            resultadoElemento.textContent = `🎉 Você Ganhou!`; 
             resultadoElemento.style.color = "limegreen";
             chanceDeGanho = 0.1; // reseta a chance para 10%
             winSound.play();
@@ -289,8 +302,8 @@ function girarLeds() {
     }, 2000);
 }
 
-// Inicializa o texto no resultado, especialmente em telas pequenas
-if (resultadoElemento.textContent.trim() === '') {
+// Inicializa o texto no resultado, para telas pequenas
+if (resultadoElemento.textContent.trim() === '' && window.innerWidth < 600) {
     resultadoElemento.textContent = 'Clique no botão acima!';
 }
 </script>
