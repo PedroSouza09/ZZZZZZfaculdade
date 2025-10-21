@@ -1,172 +1,243 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projeto Arduino - Banner Interativo</title>
-    <style>
-        /* Estilo geral */
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #007bff, #00c6ff);
-            color: #fff;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projeto Arduino - Cassino Interativo</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #00c6ff, #007bff);
+        color: #fff;
+        overflow-x: hidden;
+    }
 
-        .banner {
-            padding: 40px 20px;
-            text-align: center;
-        }
+    .banner {
+        padding: 40px 20px;
+        text-align: center;
+    }
 
-        .banner h1 {
-            font-size: 2.5em;
-            margin-bottom: 20px;
-        }
+    h1 {
+        font-size: 2.5em;
+        text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        animation: pulse 2s infinite alternate;
+    }
 
-        .section {
-            background: rgba(0,0,0,0.3);
-            padding: 20px;
-            margin: 15px auto;
-            border-radius: 10px;
-            max-width: 900px;
-            text-align: left;
-        }
+    @keyframes pulse {
+        from { transform: scale(1); }
+        to { transform: scale(1.05); }
+    }
 
-        .section h2 {
-            font-size: 1.5em;
-            color: #ffd700;
-            margin-bottom: 10px;
-        }
+    .container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+    }
 
-        .section ul {
-            list-style-type: none;
-            padding-left: 0;
-        }
+    .section {
+        background: rgba(255,255,255,0.15);
+        padding: 20px;
+        border-radius: 15px;
+        width: 380px;
+        box-shadow: 0 0 15px rgba(255,255,255,0.2);
+        transition: transform 0.3s;
+        text-align: center;
+    }
 
-        .section li {
-            margin-bottom: 5px;
-        }
+    .section:hover {
+        transform: scale(1.05);
+    }
 
-        .led-simulation {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-        }
+    .section h2 {
+        color: #ffe74c;
+        font-size: 1.4em;
+    }
 
-        .led {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            margin: 0 10px;
-            background-color: grey;
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
-        }
+    .led-simulation {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+    }
 
-        button {
-            display: block;
-            margin: 10px auto;
-            padding: 10px 25px;
-            font-size: 1em;
-            background-color: #ffd700;
-            color: #000;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+    .led {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin: 0 15px;
+        background-color: gray; /* Cor original ajustada para 'gray' */
+        box-shadow: 0 0 15px rgba(0,0,0,0.4);
+        transition: all 0.3s ease;
+    }
 
-        button:hover {
-            background-color: #ffc700;
-        }
+    button {
+        padding: 12px 30px;
+        font-size: 1.1em;
+        background: linear-gradient(90deg, #ffd700, #ffa500);
+        color: #000;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        box-shadow: 0 0 10px rgba(255,215,0,0.5);
+        transition: all 0.2s;
+        margin: 0 auto;
+        display: block;
+    }
 
-        .result {
-            text-align: center;
-            font-size: 1.2em;
-            margin-top: 10px;
-            font-weight: bold;
-        }
+    button:hover {
+        transform: scale(1.1);
+        background: linear-gradient(90deg, #ffe44c, #ffb300);
+    }
 
-        footer {
-            text-align: center;
-            margin-top: 30px;
-            font-size: 1em;
-            color: #fff;
-        }
-    </style>
+    .result {
+        font-size: 1.3em;
+        margin-top: 15px;
+        font-weight: bold;
+        min-height: 1.5em; /* Garante espaço para o texto */
+    }
+
+    /* Rodapé centralizado */
+    footer {
+        text-align: center; /* CENTRALIZAÇÃO APLICADA AQUI */
+        margin-top: 40px;
+        font-size: 1em;
+    }
+
+    /* Confete */
+    @keyframes confetti {
+        0% { transform: translateY(0); opacity: 1; }
+        100% { transform: translateY(300px); opacity: 0; }
+    }
+
+    .confetti {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        font-size: 20px;
+        animation: confetti 2s linear forwards;
+        z-index: 1000;
+    }
+</style>
 </head>
 <body>
-    <div class="banner">
-        <h1>Projeto Arduino - Jogo de Cassino Simplificado</h1>
+<div class="banner">
+    <h1>🎰 Projeto Arduino - Cassino Interativo 🎲</h1>
+    <p>USF - Engenharia de Computação | Prof.: Geraldo Peres Caixeta | Período Noturno</p>
+</div>
 
-        <div class="section">
-            <h2>Integrantes</h2>
-            <ul>
-                <li>Matheus Sousa - RA: 202407129</li>
-                <li>Pedro Henrique - RA: 202524458</li>
-                <li>Luis Henrique - RA: 202415008</li>
-                <li>Lucas Souza - RA: [RA a ser preenchido]</li>
-            </ul>
-        </div>
-
-        <div class="section">
-            <h2>Tema do Projeto</h2>
-            <p>Sistema LED com Arduino - Jogo de Cassino Simplificado</p>
-        </div>
-
-        <div class="section">
-            <h2>Resumo</h2>
-            <p>
-                Desenvolver um sistema baseado em Arduino que simule um jogo de sorte e azar. 
-                O projeto utilizará LEDs para exibir aleatoriamente três cores distintas. 
-                Se as três cores exibidas forem iguais, o jogador será declarado vencedor.
-            </p>
-        </div>
-
-        <div class="section">
-            <h2>Materiais/Instrumentos</h2>
-            <p>Componentes eletrônicos como Arduino, LEDs, resistores e cabos (listados na seção técnica).</p>
-        </div>
-
-        <div class="section">
-            <h2>Simulação de LEDs</h2>
-            <div class="led-simulation">
-                <div class="led" id="led1"></div>
-                <div class="led" id="led2"></div>
-                <div class="led" id="led3"></div>
-            </div>
-            <button onclick="girarLEDs()">Girar LEDs</button>
-            <div class="result" id="result"></div>
-        </div>
+<div class="container">
+    <div class="section">
+        <h2>Integrantes</h2>
+        <ul style="text-align:left; display:inline-block;">
+            <li>Matheus Sousa - RA: 202407129</li>
+            <li>Pedro Henrique - RA: 202524458</li>
+            <li>Luis Henrique - RA: 202415008</li>
+            <li>Lucas Souza - RA: 202529840</li>
+        </ul>
     </div>
 
-    <footer>
-        Apresentação do Projeto
-    </footer>
+    <div class="section">
+        <h2>Simulação de LEDs</h2>
+        <div class="led-simulation">
+            <div class="led" id="led1"></div>
+            <div class="led" id="led2"></div>
+            <div class="led" id="led3"></div>
+        </div>
+        <div style="display:flex; justify-content:center; align-items:center;">
+            <button onclick="girarLeds()">🎡 Tentar a Sorte</button>
+        </div>
+        <div class="result" id="resultado">Clique no botão acima!</div> 
+    </div>
 
-    <script>
-        const leds = ['red', 'green', 'blue', 'yellow', 'purple'];
-        const ledElements = [
-            document.getElementById('led1'),
-            document.getElementById('led2'),
-            document.getElementById('led3')
-        ];
-        const resultText = document.getElementById('result');
+    <div class="section">
+        <h2>Resumo do Projeto</h2>
+        <p>
+            Este projeto foi desenvolvido como uma simulação lúdica de um jogo de sorte usando LEDs controlados por Arduino. 
+            A ideia é representar de forma interativa o funcionamento de sistemas eletrônicos simples, com elementos de entretenimento inspirados em cassinos. A chance de ganhar aumenta a cada tentativa perdida.
+        </p>
+    </div>
+</div>
 
-        function girarLEDs() {
-            let colors = [];
-            for (let i = 0; i < 3; i++) {
-                const color = leds[Math.floor(Math.random() * leds.length)];
-                ledElements[i].style.backgroundColor = color;
-                colors.push(color);
-            }
+<footer>
+    <p>Apresentação do Projeto - Cassino com Arduino</p>
+</footer>
 
-            if (colors[0] === colors[1] && colors[1] === colors[2]) {
-                resultText.textContent = "Parabéns! Você venceu!";
-                resultText.style.color = "lime";
-            } else {
-                resultText.textContent = "Tente novamente!";
-                resultText.style.color = "red";
-            }
+<script>
+// Variáveis do jogo de chance progressiva
+let chanceDeGanho = 0.1; // começa com 10% de chance
+const aumentoPorTentativa = 0.1; // aumenta 10% a cada tentativa perdida
+const chanceMaxima = 1.0; // 100%
+
+// Elementos e Sons
+const ledsElementos = document.querySelectorAll(".led"); // Seleciona todos os LEDs
+const resultadoElemento = document.getElementById("resultado"); // Elemento de resultado
+const winSound = new Audio('https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg');
+const loseSound = new Audio('https://actions.google.com/sounds/v1/cartoon/slide_whistle.ogg');
+
+// Função de Confete (para vitória)
+function confete() {
+    for (let i = 0; i < 30; i++) {
+        const emoji = document.createElement('div');
+        emoji.textContent = ['🎉','✨','💫','🎊'][Math.floor(Math.random()*4)];
+        emoji.className = 'confetti';
+        emoji.style.left = Math.random()*100 + 'vw';
+        emoji.style.animationDelay = Math.random()*0.5 + 's';
+        document.body.appendChild(emoji);
+        setTimeout(() => emoji.remove(), 2000);
+    }
+}
+
+/**
+ * Função principal para girar a simulação e calcular o resultado.
+ * A chance de ganho (percentual) não é mais exibida no resultado.
+ */
+function girarLeds() {
+    // Exibe o status inicial
+    resultadoElemento.textContent = "Girando... 💫";
+    resultadoElemento.style.color = "#fff";
+    
+    // Efeito de piscar os LEDs
+    let i = 0;
+    const piscar = setInterval(() => {
+        ledsElementos.forEach((led, index) => {
+            // Os LEDs piscam em sequência com a cor amarela
+            led.style.backgroundColor = (index === i % ledsElementos.length) ? "yellow" : "gray";
+        });
+        i++;
+    }, 100);
+    
+    // Após 2 segundos, parar o giro
+    setTimeout(() => {
+        clearInterval(piscar);
+        
+        // Sorteia o resultado com base na chance atual
+        const ganhou = Math.random() < chanceDeGanho;
+        
+        if (ganhou) {
+            resultadoElemento.textContent = `🎉 Você Ganhou! 🎉`; 
+            resultadoElemento.style.color = "limegreen";
+            chanceDeGanho = 0.1; // reseta a chance para 10%
+            winSound.play();
+            confete();
+            
+            // Simula uma cor de vitória nos LEDs (ex: verde)
+            ledsElementos.forEach(led => led.style.backgroundColor = "limegreen");
+            
+        } else {
+            // Aumenta a chance
+            chanceDeGanho = Math.min(chanceDeGanho + aumentoPorTentativa, chanceMaxima);
+            
+            resultadoElemento.textContent = `😢 Tente novamente!`;
+            resultadoElemento.style.color = "red";
+            loseSound.play();
+
+            // Volta os LEDs para o estado original (cinza)
+            ledsElementos.forEach(led => led.style.backgroundColor = "gray");
         }
-    </script>
+
+    }, 2000);
+}
+</script>
 </body>
 </html>
