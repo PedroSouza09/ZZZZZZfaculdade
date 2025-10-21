@@ -11,7 +11,7 @@
         background: linear-gradient(135deg, #00c6ff, #007bff);
         color: #fff;
         overflow-x: hidden;
-        /* Define a altura mínima do corpo para que o footer fique mais para baixo */
+        /* Define a altura mínima do corpo */
         min-height: 100vh;
         display: flex;
         flex-direction: column;
@@ -35,21 +35,23 @@
 
     .container {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        /* ALTERADO: Empilha os itens verticalmente */
+        flex-direction: column; 
+        align-items: center; /* Centraliza horizontalmente as caixas */
+        justify-content: flex-start; /* Alinha ao topo (ou centro se necessário, mas 'flex-start' funciona bem com 'flex-direction: column') */
         gap: 30px;
         padding: 20px;
-        /* Permite que o container empurre o footer para baixo */
-        flex-grow: 1; 
-        align-items: center; /* Centraliza verticalmente o grupo de cartões */
-        margin: 30px 0; /* Adiciona margem acima/abaixo para centralizar melhor */
+        flex-grow: 1;
+        margin: 30px 0;
     }
 
     .section {
         background: rgba(255,255,255,0.15);
         padding: 20px;
         border-radius: 15px;
-        width: 380px;
+        /* ALTERADO: Ocupa a maior parte da largura */
+        width: 90%; 
+        max-width: 500px; /* Limite o tamanho máximo para não ficar muito largo em monitores */
         box-shadow: 0 0 15px rgba(255,255,255,0.2);
         transition: transform 0.3s;
         text-align: center;
@@ -57,7 +59,7 @@
     }
 
     .section:hover {
-        transform: scale(1.05);
+        transform: scale(1.03); /* Ajustado para um scale menor, já que estão empilhados */
     }
 
     .section h2 {
@@ -96,7 +98,7 @@
     }
 
     button:hover {
-        transform: scale(1.1);
+        transform: scale(1.05);
         background: linear-gradient(90deg, #ffe44c, #ffb300);
     }
 
@@ -109,7 +111,7 @@
 
     footer {
         text-align: center;
-        margin-top: 80px; /* AUMENTADO O ESPAÇAMENTO SUPERIOR */
+        margin-top: 50px; /* Espaçamento reduzido, pois os cartões já ocupam mais espaço */
         padding-bottom: 20px;
         font-size: 1em;
     }
@@ -130,9 +132,9 @@
     }
 
     /* =========================================== */
-    /* RESPONSIVIDADE (MOBILE)                     */
+    /* RESPONSIVIDADE (MOBILE) - Ajustes mínimos, pois o layout já está em coluna */
     /* =========================================== */
-    @media (max-width: 768px) {
+    @media (max-width: 600px) {
         .banner {
             padding: 20px 10px;
         }
@@ -148,13 +150,8 @@
         }
 
         .section {
-            width: 90%;
-            max-width: 400px;
+            width: 95%; /* Ocupa ainda mais a largura no mobile */
             padding: 15px;
-        }
-
-        .section h2 {
-            font-size: 1.2em;
         }
 
         .led {
@@ -170,10 +167,6 @@
         
         .result {
             font-size: 1.1em;
-        }
-        
-        footer {
-            margin-top: 40px; /* Espaçamento menor no mobile */
         }
     }
 </style>
@@ -233,13 +226,6 @@ const resultadoElemento = document.getElementById("resultado"); // Elemento de r
 const winSound = new Audio('https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg');
 const loseSound = new Audio('https://actions.google.com/sounds/v1/cartoon/slide_whistle.ogg');
 
-// Oculta a mensagem inicial no desktop, ela será preenchida ao clicar
-if (window.innerWidth > 768) {
-    resultadoElemento.innerHTML = '&nbsp;'; 
-} else {
-    resultadoElemento.textContent = 'Clique no botão acima!';
-}
-
 // Função de Confete (para vitória)
 function confete() {
     for (let i = 0; i < 30; i++) {
@@ -255,7 +241,6 @@ function confete() {
 
 /**
  * Função principal para girar a simulação e calcular o resultado.
- * A chance de ganho (percentual) não é mais exibida no resultado.
  */
 function girarLeds() {
     // Exibe o status inicial
@@ -302,6 +287,11 @@ function girarLeds() {
         }
 
     }, 2000);
+}
+
+// Inicializa o texto no resultado, especialmente em telas pequenas
+if (resultadoElemento.textContent.trim() === '') {
+    resultadoElemento.textContent = 'Clique no botão acima!';
 }
 </script>
 </body>
