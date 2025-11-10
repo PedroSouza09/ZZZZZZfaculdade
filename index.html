@@ -11,7 +11,6 @@
         background: linear-gradient(135deg, #00c6ff, #007bff);
         color: #fff;
         overflow-x: hidden;
-        /* Define a altura mínima do corpo */
         min-height: 100vh;
         display: flex;
         flex-direction: column;
@@ -35,9 +34,8 @@
 
     .container {
         display: flex;
-        /* Empilha os itens verticalmente */
         flex-direction: column; 
-        align-items: center; /* Centraliza horizontalmente as caixas */
+        align-items: center;
         justify-content: flex-start;
         gap: 30px;
         padding: 20px;
@@ -50,16 +48,11 @@
         padding: 20px;
         border-radius: 15px;
         width: 90%; 
-        max-width: 500px; /* Tamanho padrão */
+        max-width: 700px;
         box-shadow: 0 0 15px rgba(255,255,255,0.2);
         transition: transform 0.3s;
-        text-align: center;
+        text-align: justify;
         box-sizing: border-box;
-    }
-
-    /* Estilo específico para a caixa de Resumo - Mantendo a largura maior */
-    #resumo-section {
-        max-width: 700px; 
     }
 
     .section:hover {
@@ -69,6 +62,7 @@
     .section h2 {
         color: #ffe74c;
         font-size: 1.4em;
+        text-align: center;
     }
 
     .led-simulation {
@@ -111,6 +105,7 @@
         margin-top: 15px;
         font-weight: bold;
         min-height: 1.5em;
+        text-align: center;
     }
 
     footer {
@@ -120,7 +115,6 @@
         font-size: 1em;
     }
 
-    /* Confete */
     @keyframes confetti {
         0% { transform: translateY(0); opacity: 1; }
         100% { transform: translateY(300px); opacity: 0; }
@@ -135,47 +129,12 @@
         z-index: 1000;
     }
 
-    /* =========================================== */
-    /* RESPONSIVIDADE (MOBILE) */
-    /* =========================================== */
     @media (max-width: 600px) {
-        .banner {
-            padding: 20px 10px;
-        }
-
-        h1 {
-            font-size: 1.8em;
-        }
-
-        .container {
-            padding: 10px;
-            gap: 20px;
-            margin: 20px 0;
-        }
-
-        .section {
-            width: 95%; 
-            padding: 15px;
-        }
-        
-        #resumo-section {
-            max-width: 95%; 
-        }
-
-        .led {
-            width: 40px;
-            height: 40px;
-            margin: 0 10px;
-        }
-
-        button {
-            padding: 10px 20px;
-            font-size: 1em;
-        }
-        
-        .result {
-            font-size: 1.1em;
-        }
+        h1 { font-size: 1.8em; }
+        .section { width: 95%; padding: 15px; }
+        .led { width: 40px; height: 40px; margin: 0 10px; }
+        button { padding: 10px 20px; font-size: 1em; }
+        .result { font-size: 1.1em; }
     }
 </style>
 </head>
@@ -196,7 +155,7 @@
         </ul>
     </div>
 
-    <div class="section" id="resumo-section" style="text-align:justify;">
+    <div class="section" id="resumo-section">
         <h2>Resumo do Projeto</h2>
         <p>
             Este projeto é uma simulação lúdica de um jogo de sorte usando LEDs controlados por Arduino, inspirado em cassinos. O usuário pressiona um botão para “girar” os LEDs, que piscam rapidamente simulando uma roleta ou slot machine, e ao final param de forma aleatória para indicar o resultado.
@@ -207,6 +166,42 @@
         <p>
             O projeto também explora conceitos básicos de eletrônica e programação, como controle de LEDs, leitura de botão e geração de números aleatórios. Além disso, efeitos visuais e sonoros tornam a simulação mais atrativa, permitindo ao usuário aprender brincando enquanto interage com o sistema.
         </p>
+    </div>
+
+    <div class="section">
+        <h2>Descrição Detalhada do Projeto</h2>
+        <p>
+            Este projeto foi desenvolvido como uma simulação interativa de um jogo de sorte controlado por Arduino e LEDs, inspirado no ambiente de cassinos, mas com uma abordagem educativa e inteligente. A proposta é permitir que o jogador interaja com um sistema de luzes que representam a chance de vitória, aumentando dinamicamente a probabilidade de ganhar a cada tentativa perdida.
+        </p>
+        <p>
+            Dessa forma, o jogo demonstra na prática conceitos de probabilidade adaptativa, controle de LEDs, leitura de botões e lógica condicional, unindo entretenimento e aprendizado em um único sistema. O objetivo é simular de maneira lúdica e educativa um sistema de jogo eletrônico que se adapta ao desempenho do jogador, demonstrando como a eletrônica e a programação podem ser usadas para criar lógica de aprendizado simples.
+        </p>
+        <p>
+            Além disso, busca-se desenvolver:
+            <ul>
+                <li>A compreensão sobre entradas e saídas digitais;</li>
+                <li>O uso de estruturas condicionais e variáveis acumulativas;</li>
+                <li>O controle visual de LEDs como meio de feedback interativo;</li>
+                <li>A aplicação de conceitos de probabilidade e adaptação dentro da programação Arduino.</li>
+            </ul>
+        </p>
+        <p><strong>Componentes utilizados:</strong></p>
+        <ul>
+            <li>1x Arduino Uno</li>
+            <li>3x LEDs (vermelho, amarelo e verde)</li>
+            <li>3x resistores de 220 Ω</li>
+            <li>1x botão push button</li>
+            <li>Jumpers e protoboard</li>
+            <li>(Opcional) 1x buzzer para efeitos sonoros</li>
+        </ul>
+        <p><strong>Ligações elétricas:</strong></p>
+        <table border="1" cellpadding="6" cellspacing="0" style="margin:auto; text-align:center; border-collapse:collapse;">
+            <tr><th>Componente</th><th>Pino Arduino</th><th>Ligação Adicional</th></tr>
+            <tr><td>LED vermelho</td><td>8</td><td>Resistor 220 Ω → GND</td></tr>
+            <tr><td>LED amarelo</td><td>9</td><td>Resistor 220 Ω → GND</td></tr>
+            <tr><td>LED verde</td><td>10</td><td>Resistor 220 Ω → GND</td></tr>
+            <tr><td>Botão</td><td>2</td><td>Pull-down → GND</td></tr>
+        </table>
     </div>
 
     <div class="section">
@@ -228,18 +223,14 @@
 </footer>
 
 <script>
-// Variáveis do jogo de chance progressiva
-let chanceDeGanho = 0.1; // começa com 10% de chance
-const aumentoPorTentativa = 0.1; // aumenta 10% a cada tentativa perdida
-const chanceMaxima = 1.0; // 100%
-
-// Elementos e Sons
-const ledsElementos = document.querySelectorAll(".led"); // Seleciona todos os LEDs
-const resultadoElemento = document.getElementById("resultado"); // Elemento de resultado
+let chanceDeGanho = 0.1;
+const aumentoPorTentativa = 0.1;
+const chanceMaxima = 1.0;
+const ledsElementos = document.querySelectorAll(".led");
+const resultadoElemento = document.getElementById("resultado");
 const winSound = new Audio('https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg');
 const loseSound = new Audio('https://actions.google.com/sounds/v1/cartoon/slide_whistle.ogg');
 
-// Função de Confete (para vitória)
 function confete() {
     for (let i = 0; i < 30; i++) {
         const emoji = document.createElement('div');
@@ -252,59 +243,34 @@ function confete() {
     }
 }
 
-/**
- * Função principal para girar a simulação e calcular o resultado.
- */
 function girarLeds() {
-    // Exibe o status inicial
     resultadoElemento.textContent = "Girando... 💫";
     resultadoElemento.style.color = "#fff";
-    
-    // Efeito de piscar os LEDs
     let i = 0;
     const piscar = setInterval(() => {
         ledsElementos.forEach((led, index) => {
-            // Os LEDs piscam em sequência com a cor amarela
             led.style.backgroundColor = (index === i % ledsElementos.length) ? "yellow" : "gray";
         });
         i++;
     }, 100);
-    
-    // Após 2 segundos, parar o giro
     setTimeout(() => {
         clearInterval(piscar);
-        
-        // Sorteia o resultado com base na chance atual
         const ganhou = Math.random() < chanceDeGanho;
-        
         if (ganhou) {
             resultadoElemento.textContent = `🎉 Você Ganhou!`; 
             resultadoElemento.style.color = "limegreen";
-            chanceDeGanho = 0.1; // reseta a chance para 10%
+            chanceDeGanho = 0.1;
             winSound.play();
             confete();
-            
-            // Simula uma cor de vitória nos LEDs (ex: verde)
             ledsElementos.forEach(led => led.style.backgroundColor = "limegreen");
-            
         } else {
-            // Aumenta a chance
             chanceDeGanho = Math.min(chanceDeGanho + aumentoPorTentativa, chanceMaxima);
-            
             resultadoElemento.textContent = `😢 Tente novamente!`;
             resultadoElemento.style.color = "red";
             loseSound.play();
-
-            // Volta os LEDs para o estado original (cinza)
             ledsElementos.forEach(led => led.style.backgroundColor = "gray");
         }
-
     }, 2000);
-}
-
-// Inicializa o texto no resultado, para telas pequenas
-if (resultadoElemento.textContent.trim() === '' && window.innerWidth < 600) {
-    resultadoElemento.textContent = 'Clique no botão acima!';
 }
 </script>
 </body>
