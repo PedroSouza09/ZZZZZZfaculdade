@@ -88,6 +88,17 @@
 
 <main>
 
+    <section id="integrantes">
+        <h2>Integrantes e Professor Orientador</h2>
+        <ul>
+            <li>Matheus Sousa — RA: 202407129</li>
+            <li>Pedro Henrique — RA: 202524458</li>
+            <li>Luis Henrique — RA: 202415008</li>
+            <li>Lucas Souza — RA: 202529840</li>
+        </ul>
+        <p><strong>Professor Orientador:</strong> Geraldo Peres Caixeta</p>
+    </section>
+
     <section id="resumo">
         <h2>Resumo do Projeto</h2>
         <p>
@@ -101,7 +112,7 @@
     <section id="descricao">
         <h2>Descrição Detalhada do Projeto</h2>
         <p>
-            O projeto foi desenvolvido como uma simulação interativa de um jogo de caça-níquel controlado por Arduino, display LCD 16x2, buzzer e dois botões. A proposta é permitir que o jogador interaja com um sistema de roletas digitais, visualizando resultados e créditos em tempo real.
+            O projeto foi desenvolvido como uma simulação interativa de um jogo de sorte controlado por Arduino, display LCD 16x2, buzzer e dois botões. A proposta é permitir que o jogador interaja com um sistema de roletas digitais, visualizando resultados e créditos em tempo real.
         </p>
         <p>
             O objetivo é demonstrar, de forma prática, o uso de componentes eletrônicos básicos, leitura de entradas digitais e saída de dados em LCD. O sistema também introduz conceitos de lógica condicional, funções, estruturas de repetição e exibição dinâmica.
@@ -120,23 +131,19 @@
         </ul>
 
         <h3>Imagem do Protótipo:</h3>
-        <!-- Coloque aqui a imagem do projeto -->
-        <img src="./imgprojeto.jpg" alt="Protótipo do Projeto Arduino Cassino Interativo">
-
+        <img src="imgprojeto.jpg" alt="Protótipo do Projeto Arduino Cassino Interativo">
     </section>
 
-    <section id="guia">
-        <h2>GUIA DEFINITIVO: Montagem Passo a Passo do Caça-Níquel</h2>
+    <section id="montagem">
+        <h2>Montagem Passo a Passo</h2>
 
-        <h3>Montagem Passo a Passo</h3>
+        <h3>Etapas Iniciais</h3>
         <pre>
-PASSO 1: COLOCAR COMPONENTES NA PROTOBOARD
-1. LCD 16x2 → Parte superior central
-2. Potenciômetro → À direita do LCD
-3. Botão SPIN → Lado esquerdo inferior
-4. Botão BET → Lado direito inferior
-5. Buzzer → Próximo ao Arduino
-6. Resistores → Próximos dos respectivos componentes
+1. Posicione o LCD 16x2 na parte superior da protoboard.
+2. Conecte o potenciômetro à direita do LCD.
+3. Posicione os botões SPIN e BET na parte inferior.
+4. Conecte o buzzer próximo ao Arduino.
+5. Adicione os resistores de 10kΩ e 220Ω conforme necessário.
         </pre>
 
         <h3>Conexões do LCD</h3>
@@ -203,7 +210,7 @@ void setup() {
   pinMode(BET_BTN, INPUT_PULLUP);
   pinMode(BUZZER, OUTPUT);
   randomSeed(analogRead(A0));
-  lcd.print("Caça-Níquel 16x2");
+  lcd.print("Cassino Interativo");
   delay(1000);
   showScreen();
 }
@@ -237,12 +244,11 @@ void loop() {
             <li>Buzzer toca sons conforme o resultado;</li>
             <li>Créditos aumentam ou diminuem conforme o jogo.</li>
         </ul>
-        <p>Pronto! Seu caça-níquel está funcionando perfeitamente.</p>
     </section>
 </main>
 
 <footer>
-    <p>Projeto desenvolvido pro curso da Engenharia de Computação.</p>
+    <p>USF - Engenharia de Computação | Prof.: Geraldo Peres Caixeta | Período Noturno</p>
 </footer>
 </body>
 </html>
