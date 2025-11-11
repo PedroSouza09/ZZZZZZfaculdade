@@ -10,268 +10,239 @@
         font-family: 'Poppins', sans-serif;
         background: linear-gradient(135deg, #00c6ff, #007bff);
         color: #fff;
-        overflow-x: hidden;
-        min-height: 100vh;
-        display: flex;
-        flex-direction: column;
     }
 
-    .banner {
-        padding: 40px 20px;
+    header {
+        background-color: rgba(0, 0, 0, 0.3);
         text-align: center;
+        padding: 30px 10px;
     }
 
-    h1 {
-        font-size: 2.5em;
-        text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
-        animation: pulse 2s infinite alternate;
+    header h1 {
+        font-size: 2.2em;
+        margin: 0;
+        letter-spacing: 1px;
     }
 
-    @keyframes pulse {
-        from { transform: scale(1); }
-        to { transform: scale(1.05); }
-    }
-
-    .container {
-        display: flex;
-        flex-direction: column; 
-        align-items: center;
-        justify-content: flex-start;
-        gap: 30px;
-        padding: 20px;
-        flex-grow: 1;
-        margin: 30px 0;
-    }
-
-    .section {
-        background: rgba(255,255,255,0.15);
-        padding: 20px;
+    main {
+        max-width: 900px;
+        margin: 40px auto;
+        background: rgba(255, 255, 255, 0.1);
         border-radius: 15px;
-        width: 90%; 
-        max-width: 700px;
-        box-shadow: 0 0 15px rgba(255,255,255,0.2);
-        transition: transform 0.3s;
+        padding: 30px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+
+    section {
+        margin-bottom: 40px;
+    }
+
+    h2 {
+        border-bottom: 2px solid #fff;
+        padding-bottom: 8px;
+        margin-bottom: 15px;
+        font-size: 1.5em;
+    }
+
+    p {
+        line-height: 1.6;
+        font-size: 1.05em;
         text-align: justify;
-        box-sizing: border-box;
     }
 
-    .section:hover {
-        transform: scale(1.03); 
-    }
-
-    .section h2 {
-        color: #ffe74c;
-        font-size: 1.4em;
-        text-align: center;
-    }
-
-    .led-simulation {
-        display: flex;
-        justify-content: center;
-        margin: 20px 0;
-    }
-
-    .led {
-        width: 60px;
-        height: 60px;
-        border-radius: 50%;
-        margin: 0 15px;
-        background-color: gray;
-        box-shadow: 0 0 15px rgba(0,0,0,0.4);
-        transition: all 0.3s ease;
-    }
-
-    button {
-        padding: 12px 30px;
-        font-size: 1.1em;
-        background: linear-gradient(90deg, #ffd700, #ffa500);
-        color: #000;
-        border: none;
-        border-radius: 10px;
-        cursor: pointer;
-        box-shadow: 0 0 10px rgba(255,215,0,0.5);
-        transition: all 0.2s;
-        margin: 0 auto;
+    img {
         display: block;
+        margin: 25px auto;
+        border-radius: 10px;
+        max-width: 100%;
+        box-shadow: 0 0 10px rgba(0,0,0,0.4);
     }
 
-    button:hover {
-        transform: scale(1.05);
-        background: linear-gradient(90deg, #ffe44c, #ffb300);
+    ul {
+        margin-left: 25px;
+        line-height: 1.6;
     }
 
-    .result {
-        font-size: 1.3em;
-        margin-top: 15px;
-        font-weight: bold;
-        min-height: 1.5em;
-        text-align: center;
+    pre {
+        background: rgba(0, 0, 0, 0.6);
+        padding: 15px;
+        border-radius: 10px;
+        color: #00ffae;
+        overflow-x: auto;
     }
 
     footer {
         text-align: center;
-        margin-top: 50px; 
-        padding-bottom: 20px;
-        font-size: 1em;
-    }
-
-    @keyframes confetti {
-        0% { transform: translateY(0); opacity: 1; }
-        100% { transform: translateY(300px); opacity: 0; }
-    }
-
-    .confetti {
-        position: fixed;
-        top: 0;
-        left: 50%;
-        font-size: 20px;
-        animation: confetti 2s linear forwards;
-        z-index: 1000;
-    }
-
-    @media (max-width: 600px) {
-        h1 { font-size: 1.8em; }
-        .section { width: 95%; padding: 15px; }
-        .led { width: 40px; height: 40px; margin: 0 10px; }
-        button { padding: 10px 20px; font-size: 1em; }
-        .result { font-size: 1.1em; }
+        padding: 20px;
+        font-size: 0.9em;
+        color: #e0e0e0;
+        background: rgba(0, 0, 0, 0.3);
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
     }
 </style>
 </head>
 <body>
-<div class="banner">
-    <h1>🎰 Projeto Arduino - Cassino Interativo 🎲</h1>
-    <p>USF - Engenharia de Computação | Prof.: Geraldo Peres Caixeta | Período Noturno</p>
-</div>
+<header>
+    <h1>Projeto Arduino – Cassino Interativo</h1>
+</header>
 
-<div class="container">
-    <div class="section">
-        <h2>Integrantes</h2>
-        <ul style="text-align:left; display:inline-block;">
-            <li>Matheus Sousa - RA: 202407129</li>
-            <li>Pedro Henrique - RA: 202524458</li>
-            <li>Luis Henrique - RA: 202415008</li>
-            <li>Lucas Souza - RA: 202529840</li>
-        </ul>
-    </div>
+<main>
 
-    <div class="section" id="resumo-section">
+    <section id="resumo">
         <h2>Resumo do Projeto</h2>
         <p>
-            Este projeto é uma simulação lúdica de um jogo de sorte usando LEDs controlados por Arduino, inspirado em cassinos. O usuário pressiona um botão para “girar” os LEDs, que piscam rapidamente simulando uma roleta ou slot machine, e ao final param de forma aleatória para indicar o resultado.
+            Este projeto é uma simulação lúdica de um jogo de sorte usando Arduino e um display LCD 16x2, inspirado em cassinos. O usuário pode pressionar botões para “apostar” e “girar” as roletas, que são exibidas no LCD com cores simulando os resultados de uma slot machine.
         </p>
         <p>
-            A mecânica do jogo é simples e interativa: se o LED premiado acender, o jogador ganha; caso contrário, ele perde e a chance de vitória aumenta a cada tentativa perdida, incentivando o jogador a continuar tentando. Esse aumento progressivo da chance cria uma experiência envolvente e divertida, semelhante ao que acontece em jogos de azar, mas de forma educativa e segura.
+            O sistema é interativo e educativo, permitindo compreender conceitos de controle de exibição em LCD, leitura de botões, aleatoriedade e lógica de programação. Além disso, o uso de sons e exibição de créditos e apostas torna a experiência envolvente e divertida.
         </p>
-        <p>
-            O projeto também explora conceitos básicos de eletrônica e programação, como controle de LEDs, leitura de botão e geração de números aleatórios. Além disso, efeitos visuais e sonoros tornam a simulação mais atrativa, permitindo ao usuário aprender brincando enquanto interage com o sistema.
-        </p>
-    </div>
+    </section>
 
-    <div class="section">
+    <section id="descricao">
         <h2>Descrição Detalhada do Projeto</h2>
         <p>
-            Este projeto foi desenvolvido como uma simulação interativa de um jogo de sorte controlado por Arduino e LEDs, inspirado no ambiente de cassinos, mas com uma abordagem educativa e inteligente. A proposta é permitir que o jogador interaja com um sistema de luzes que representam a chance de vitória, aumentando dinamicamente a probabilidade de ganhar a cada tentativa perdida.
+            O projeto foi desenvolvido como uma simulação interativa de um jogo de caça-níquel controlado por Arduino, display LCD 16x2, buzzer e dois botões. A proposta é permitir que o jogador interaja com um sistema de roletas digitais, visualizando resultados e créditos em tempo real.
         </p>
         <p>
-            Dessa forma, o jogo demonstra na prática conceitos de probabilidade adaptativa, controle de LEDs, leitura de botões e lógica condicional, unindo entretenimento e aprendizado em um único sistema. O objetivo é simular de maneira lúdica e educativa um sistema de jogo eletrônico que se adapta ao desempenho do jogador, demonstrando como a eletrônica e a programação podem ser usadas para criar lógica de aprendizado simples.
+            O objetivo é demonstrar, de forma prática, o uso de componentes eletrônicos básicos, leitura de entradas digitais e saída de dados em LCD. O sistema também introduz conceitos de lógica condicional, funções, estruturas de repetição e exibição dinâmica.
         </p>
-        <p>
-            Além disso, busca-se desenvolver:
-            <ul>
-                <li>A compreensão sobre entradas e saídas digitais;</li>
-                <li>O uso de estruturas condicionais e variáveis acumulativas;</li>
-                <li>O controle visual de LEDs como meio de feedback interativo;</li>
-                <li>A aplicação de conceitos de probabilidade e adaptação dentro da programação Arduino.</li>
-            </ul>
-        </p>
-        <p><strong>Componentes utilizados:</strong></p>
-        <ul>
-            <li>1x Arduino Uno</li>
-            <li>3x LEDs (vermelho, amarelo e verde)</li>
-            <li>3x resistores de 220 Ω</li>
-            <li>1x botão push button</li>
-            <li>Jumpers e protoboard</li>
-            <li>(Opcional) 1x buzzer para efeitos sonoros</li>
-        </ul>
-        <p><strong>Ligações elétricas:</strong></p>
-        <table border="1" cellpadding="6" cellspacing="0" style="margin:auto; text-align:center; border-collapse:collapse;">
-            <tr><th>Componente</th><th>Pino Arduino</th><th>Ligação Adicional</th></tr>
-            <tr><td>LED vermelho</td><td>8</td><td>Resistor 220 Ω → GND</td></tr>
-            <tr><td>LED amarelo</td><td>9</td><td>Resistor 220 Ω → GND</td></tr>
-            <tr><td>LED verde</td><td>10</td><td>Resistor 220 Ω → GND</td></tr>
-            <tr><td>Botão</td><td>2</td><td>Pull-down → GND</td></tr>
-        </table>
-    </div>
 
-    <div class="section">
-        <h2>Simulação de LEDs</h2>
-        <div class="led-simulation">
-            <div class="led" id="led1"></div>
-            <div class="led" id="led2"></div>
-            <div class="led" id="led3"></div>
-        </div>
-        <div style="display:flex; justify-content:center; align-items:center;">
-            <button onclick="girarLeds()">🎡 Tentar a Sorte</button>
-        </div>
-        <div class="result" id="resultado">&nbsp;</div> 
-    </div>
-</div>
+        <h3>Componentes Utilizados:</h3>
+        <ul>
+            <li>1x Arduino Uno R3</li>
+            <li>1x LCD 16x2 (Character LCD)</li>
+            <li>1x Potenciômetro 10kΩ</li>
+            <li>2x Botão (Pushbutton)</li>
+            <li>1x Buzzer (Piezo Speaker)</li>
+            <li>2x Resistores 10kΩ</li>
+            <li>1x Resistor 220Ω</li>
+            <li>1x Protoboard</li>
+        </ul>
+
+        <h3>Imagem do Protótipo:</h3>
+        <!-- Coloque aqui a imagem do projeto -->
+        <img src="./imgprojeto.jpg" alt="Protótipo do Projeto Arduino Cassino Interativo">
+
+    </section>
+
+    <section id="guia">
+        <h2>GUIA DEFINITIVO: Montagem Passo a Passo do Caça-Níquel</h2>
+
+        <h3>Montagem Passo a Passo</h3>
+        <pre>
+PASSO 1: COLOCAR COMPONENTES NA PROTOBOARD
+1. LCD 16x2 → Parte superior central
+2. Potenciômetro → À direita do LCD
+3. Botão SPIN → Lado esquerdo inferior
+4. Botão BET → Lado direito inferior
+5. Buzzer → Próximo ao Arduino
+6. Resistores → Próximos dos respectivos componentes
+        </pre>
+
+        <h3>Conexões do LCD</h3>
+        <pre>
+[1] VSS → GND
+[2] VDD → 5V
+[3] VO → Pino central do potenciômetro
+[4] RS → Pino 12
+[5] RW → GND
+[6] E → Pino 11
+[11] D4 → Pino 5
+[12] D5 → Pino 4
+[13] D6 → Pino 3
+[14] D7 → Pino 2
+[15] A → 5V via resistor 220Ω
+[16] K → GND
+        </pre>
+
+        <h3>Botões e Buzzer</h3>
+        <pre>
+Botão SPIN:
+Terminal superior esquerdo → 5V
+Terminal inferior esquerdo → Pino 8 + resistor 10kΩ → GND
+
+Botão BET:
+Terminal superior esquerdo → 5V
+Terminal inferior esquerdo → Pino 9 + resistor 10kΩ → GND
+
+Buzzer:
+Terminal positivo (+) → Pino 6
+Terminal negativo (-) → GND
+        </pre>
+
+        <h3>Alimentação</h3>
+        <pre>
+Arduino 5V → Barramento 5V da protoboard
+Arduino GND → Barramento GND da protoboard
+        </pre>
+
+        <h3>Código do Projeto</h3>
+        <pre>
+#include <LiquidCrystal.h>
+
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+#define SPIN_BTN 8
+#define BET_BTN 9
+#define BUZZER 6
+
+int credits = 100;
+int betOptions[] = {1, 2, 5};
+int betIndex = 0;
+int bet = betOptions[0];
+
+const char* colors[] = {"VERMELHO", "AZUL", "VERDE", "AMARELO", "ROXO", "BRANCO"};
+const int numColors = 6;
+int reel[3] = {0, 0, 0};
+
+bool lastSpinState = HIGH;
+bool lastBetState = HIGH;
+
+void setup() {
+  lcd.begin(16, 2);
+  pinMode(SPIN_BTN, INPUT_PULLUP);
+  pinMode(BET_BTN, INPUT_PULLUP);
+  pinMode(BUZZER, OUTPUT);
+  randomSeed(analogRead(A0));
+  lcd.print("Caça-Níquel 16x2");
+  delay(1000);
+  showScreen();
+}
+
+void loop() {
+  bool currentSpinState = digitalRead(SPIN_BTN);
+  bool currentBetState = digitalRead(BET_BTN);
+
+  if (lastSpinState == HIGH && currentSpinState == LOW) {
+    delay(50);
+    spin();
+  }
+  lastSpinState = currentSpinState;
+
+  if (lastBetState == HIGH && currentBetState == LOW) {
+    delay(50);
+    betIndex = (betIndex + 1) % 3;
+    bet = betOptions[betIndex];
+    showScreen();
+    tone(BUZZER, 500, 100);
+  }
+  lastBetState = currentBetState;
+}
+        </pre>
+
+        <h3>Teste Final</h3>
+        <ul>
+            <li>LCD exibe o texto corretamente;</li>
+            <li>Botão BET muda o valor da aposta;</li>
+            <li>Botão SPIN inicia a animação das roletas;</li>
+            <li>Buzzer toca sons conforme o resultado;</li>
+            <li>Créditos aumentam ou diminuem conforme o jogo.</li>
+        </ul>
+        <p>Pronto! Seu caça-níquel está funcionando perfeitamente.</p>
+    </section>
+</main>
 
 <footer>
-    <p>Apresentação do Projeto - Cassino com Arduino</p>
+    <p>Projeto desenvolvido por Pedro Henrique Araújo de Souza e equipe — Engenharia de Computação.</p>
 </footer>
-
-<script>
-let chanceDeGanho = 0.1;
-const aumentoPorTentativa = 0.1;
-const chanceMaxima = 1.0;
-const ledsElementos = document.querySelectorAll(".led");
-const resultadoElemento = document.getElementById("resultado");
-const winSound = new Audio('https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg');
-const loseSound = new Audio('https://actions.google.com/sounds/v1/cartoon/slide_whistle.ogg');
-
-function confete() {
-    for (let i = 0; i < 30; i++) {
-        const emoji = document.createElement('div');
-        emoji.textContent = ['🎉','✨','💫','🎊'][Math.floor(Math.random()*4)];
-        emoji.className = 'confetti';
-        emoji.style.left = Math.random()*100 + 'vw';
-        emoji.style.animationDelay = Math.random()*0.5 + 's';
-        document.body.appendChild(emoji);
-        setTimeout(() => emoji.remove(), 2000);
-    }
-}
-
-function girarLeds() {
-    resultadoElemento.textContent = "Girando... 💫";
-    resultadoElemento.style.color = "#fff";
-    let i = 0;
-    const piscar = setInterval(() => {
-        ledsElementos.forEach((led, index) => {
-            led.style.backgroundColor = (index === i % ledsElementos.length) ? "yellow" : "gray";
-        });
-        i++;
-    }, 100);
-    setTimeout(() => {
-        clearInterval(piscar);
-        const ganhou = Math.random() < chanceDeGanho;
-        if (ganhou) {
-            resultadoElemento.textContent = `🎉 Você Ganhou!`; 
-            resultadoElemento.style.color = "limegreen";
-            chanceDeGanho = 0.1;
-            winSound.play();
-            confete();
-            ledsElementos.forEach(led => led.style.backgroundColor = "limegreen");
-        } else {
-            chanceDeGanho = Math.min(chanceDeGanho + aumentoPorTentativa, chanceMaxima);
-            resultadoElemento.textContent = `😢 Tente novamente!`;
-            resultadoElemento.style.color = "red";
-            loseSound.play();
-            ledsElementos.forEach(led => led.style.backgroundColor = "gray");
-        }
-    }, 2000);
-}
-</script>
 </body>
 </html>
